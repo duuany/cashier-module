@@ -1,0 +1,16 @@
+{
+    "name": "Cashier",
+    "alias": "cashier",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Cashier\\Providers\\CashierServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

@@ -1,0 +1,33 @@
+{
+    "name": "duuany/cashier-module",
+    "description": "Modulo de Caixa para aplicações Laravel",
+    "type": "laravel-module",
+    "authors": [
+        {
+            "name": "Jorge G Junior",
+            "email": "jorge.techinfo@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Cashier\\Providers\\CashierServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "require": {
+        "nwidart/laravel-modules": "^2.6",
+        "joshbrw/laravel-module-installer": "^0.1.4",
+        "laracasts/flash": "^3.0",
+        "duuany/eloquent-filters": "^1.2",
+        "laracasts/presenter": "^0.2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Cashier\\": ""
+        }
+    }
+}
