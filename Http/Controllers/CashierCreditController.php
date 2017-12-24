@@ -49,6 +49,10 @@ class CashierCreditController extends Controller
 
     public function edit(Cashier $cashier)
     {
+        if(Gate::denies('cashier.authorization', $cashier)) {
+            return $this->deniesRequest();
+        }
+
         $accounts = Account::where('store_id', auth()->user()->store->id)->get();
         return view('cashier::credit.edit', compact('cashier', 'accounts'));
     }
@@ -94,6 +98,10 @@ class CashierCreditController extends Controller
 
     public function delete(Cashier $cashier)
     {
+        if(Gate::denies('cashier.authorization', $cashier)) {
+            return $this->deniesRequest();
+        }
+
         $redirect = route('cashiers.credit.index');
         return view('cashier::credit.delete', compact('cashier', 'redirect'));
     }
