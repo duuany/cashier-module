@@ -49,7 +49,7 @@
                 </form>
             </div>
             <div class="col-md-3">
-                <a href="" class="btn btn-primary btn-block">
+                <a class="btn btn-primary btn-block disabled">
                     <i class="glyphicon glyphicon-search"></i>
                     Busca Avançada
                 </a>
@@ -99,7 +99,34 @@
     @endif
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">Total Contas a Pagar</div>
+                <div class="panel-body">
+                    <h4 class="text-center">R$ {{ number_format($debits / 100, 2, ',','.') }}</h4>
+                    <a href="{{ route('cashiers.debit.index') }}" class="btn btn-danger btn-block">
+                        <i class="glyphicon glyphicon-circle-arrow-down"></i>
+                        Contas a Pagar
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-success">
+                <div class="panel-heading">Total Contas a Receber</div>
+                <div class="panel-body">
+                    <h4 class="text-center">R$ {{ number_format($credits / 100, 2, ',','.') }}</h4>
+                    <a href="{{ route('cashiers.credit.index') }}" class="btn btn-success btn-block">
+                        <i class="glyphicon glyphicon-circle-arrow-up"></i>
+                        Contas a Receber
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading"></div>
                 <div class="panel-body">
@@ -116,28 +143,6 @@
                         <small>Para obter os registros de receitas e despesas do mês selecionado.</small>
                         <h3>Selecione um mês de referência e clique em <strong>selecionar</strong>.</h3>
                     @endif
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-danger">
-                <div class="panel-heading">Total Contas a Pagar</div>
-                <div class="panel-body">
-                    <h4 class="text-center">R$ {{ number_format($debits / 100, 2, ',','.') }}</h4>
-                    <a href="{{ route('cashiers.debit.index') }}" class="btn btn-danger btn-block">
-                        <i class="glyphicon glyphicon-circle-arrow-down"></i>
-                        Contas a Pagar
-                    </a>
-                </div>
-            </div>
-            <div class="panel panel-success">
-                <div class="panel-heading">Total Contas a Receber</div>
-                <div class="panel-body">
-                    <h4 class="text-center">R$ {{ number_format($credits / 100, 2, ',','.') }}</h4>
-                    <a href="{{ route('cashiers.credit.index') }}" class="btn btn-success btn-block">
-                        <i class="glyphicon glyphicon-circle-arrow-up"></i>
-                        Contas a Receber
-                    </a>
                 </div>
             </div>
         </div>
