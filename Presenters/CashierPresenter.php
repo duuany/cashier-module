@@ -17,7 +17,7 @@ class CashierPresenter extends Presenter
 {
     public function truncateDescription()
     {
-        return mb_strimwidth($this->description, 0, 45, "...");
+        return mb_strimwidth($this->description, 0, 80, "...");
     }
     public function type()
     {
