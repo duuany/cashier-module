@@ -24,7 +24,7 @@ class CashierController extends Controller
         $cashiers = Cashier::filter($filters)
             ->where('account_id', $account->id)
             ->whereNotNull('billed_at')
-            ->get();
+            ->paginate();
 
         $credits = Cashier::where('account_id', $account->id)
             ->whereNull('billed_at')
