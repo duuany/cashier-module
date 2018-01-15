@@ -33,3 +33,4 @@
         @endforeach
     </tbody>
 </table>
+{{ $cashiers->appends(request()->query())->links() }}
