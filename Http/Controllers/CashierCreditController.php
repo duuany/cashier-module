@@ -25,7 +25,7 @@ class CashierCreditController extends Controller
         $cashiers = Cashier::where('account_id', $account->id)
             ->where('cashier_type', 'inbound')
             ->whereNotNull('pay_at')
-            ->get();
+            ->paginate();
 
         return view('cashier::credit.index', compact('cashiers', 'currentMonth'));
     }

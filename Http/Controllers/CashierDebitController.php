@@ -25,7 +25,7 @@ class CashierDebitController extends Controller
         $cashiers = Cashier::where('account_id', $account->id)
             ->where('cashier_type', 'outbound')
             ->whereNotNull('pay_at')
-            ->get();
+            ->paginate();
 
         return view('cashier::debit.index', compact('cashiers', 'currentMonth'));
     }
