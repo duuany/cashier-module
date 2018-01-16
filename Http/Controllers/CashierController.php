@@ -22,31 +22,33 @@ class CashierController extends Controller
     {
         $account = Account::where('store_id', auth()->user()->store->id)->first();
         $cashiers = Cashier::filter($filters)
-            ->where('account_id', $account->id)
-            ->whereNotNull('billed_at')
-            ->paginate();
+                           ->where('account_id', $account->id)
+                           ->whereNotNull('billed_at');
 
         $credits = Cashier::where('account_id', $account->id)
-            ->whereNull('billed_at')
-            ->where('cashier_type', 'inbound')
-            ->sum('amount');
+                          ->whereNull('billed_at')
+                          ->where('cashier_type', 'inbound')
+                          ->sum('amount');
 
         $debits = Cashier::where('account_id', $account->id)
-            ->whereNull('billed_at')
-            ->where('cashier_type', 'outbound')
-            ->sum('amount');
+                         ->whereNull('billed_at')
+                         ->where('cashier_type', 'outbound')
+                         ->sum('amount');
 
         setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
         $month = request('month') ?: Carbon::now()->month;
         $selectedMonth = mb_strtoupper(Carbon::now()->month($month)->formatLocalized('%B'));
         $selectedYear = request('year') ?: Carbon::now()->year;
 
-        $monthInbounds = $cashiers->where('cashier_type', 'inbound');
-        $monthOutbounds = $cashiers->where('cashier_type', 'outbound');
+        $cashiersCollection = $cashiers->get();
+        $monthInbounds = $cashiersCollection->where('cashier_type', 'inbound');
+        $monthOutbounds = $cashiersCollection->where('cashier_type', 'outbound');
 
         $totalInbounds = number_format($monthInbounds->sum('amount') / 100, 2, ',', '.');
         $totalOutbounds = number_format($monthOutbounds->sum('amount') / 100, 2, ',', '.');
         $profit = number_format(($monthInbounds->sum('amount') - $monthOutbounds->sum('amount')) / 100, 2, ',', '.');
+
+        $cashiers = $cashiers->paginate();
 
         return view('cashier::index', compact(
                 'account',
