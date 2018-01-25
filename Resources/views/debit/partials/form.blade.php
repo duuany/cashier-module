@@ -46,4 +46,13 @@
             @endif
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="charged">Marcar como pago?</label>
+            <select name="charged" id="charged" class="form-control">
+                <option value="">Não</option>
+                <option value="1">Sim</option>
+            </select>
+        </div>
+    </div>
 </div>

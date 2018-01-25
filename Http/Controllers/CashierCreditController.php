@@ -40,7 +40,11 @@ class CashierCreditController extends Controller
     public function store(CashierFormRequest $request)
     {
         $request['cashier_type'] = 'inbound';
-        Cashier::create($request->all());
+        $cashier = Cashier::create($request->all());
+
+        if($request->get('charged')) {
+            $cashier->update(['billed_at' => Carbon::today('America/Sao_Paulo')->toDateString()]);
+        }
 
         flash()->success('Conta a receber adicionada com sucesso.');
 

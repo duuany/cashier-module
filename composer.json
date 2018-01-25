@@ -23,7 +23,8 @@
         "joshbrw/laravel-module-installer": "^0.1.4",
         "laracasts/flash": "^3.0",
         "duuany/eloquent-filters": "^1.2",
-        "laracasts/presenter": "^0.2.1"
+        "laracasts/presenter": "^0.2.1",
+        "nesbot/carbon": "^1.22"
     },
     "autoload": {
         "psr-4": {

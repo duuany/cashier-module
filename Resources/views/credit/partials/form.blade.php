@@ -13,7 +13,7 @@
                 <option value="">-- Selecione uma conta --</option>
                 @foreach($accounts as $account)
                     <option @if(old('account_id', $cashier->account_id) == $account->id) selected @endif
-                            value="{{ $account->id }}"
+                    value="{{ $account->id }}"
                     >{{ $account->title }}</option>
                 @endforeach
             </select>
@@ -34,7 +34,7 @@
     </div>
     <div class="col-md-3">
         <div class="form-group {{ $errors->has('pay_at') ? 'has-error': '' }}">
-            <label for="pay_at" class="input-control">Data de Pagamento:</label>
+            <label for="pay_at" class="input-control">Data a Receber:</label>
             <input type="date"
                    name="pay_at"
                    id="pay_at"
@@ -44,6 +44,15 @@
             @if($errors->has('pay_at'))
                 <span class="help-block">{{ $errors->first('pay_at') }}</span>
             @endif
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label for="charged">Marcar como recebido?</label>
+            <select name="charged" id="charged" class="form-control">
+                <option value="">Não</option>
+                <option value="1">Sim</option>
+            </select>
         </div>
     </div>
 </div>
